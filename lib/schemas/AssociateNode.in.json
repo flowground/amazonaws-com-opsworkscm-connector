@@ -1,0 +1,82 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "EngineAttributes": {
+                    "description": "<p>Engine attributes used for associating the node. </p> <p class=\"title\"> <b>Attributes accepted in a AssociateNode request for Chef</b> </p> <ul> <li> <p> <code>CHEF_ORGANIZATION</code>: The Chef organization with which the node is associated. By default only one organization named <code>default</code> can exist. </p> </li> <li> <p> <code>CHEF_NODE_PUBLIC_KEY</code>: A PEM-formatted public key. This key is required for the <code>chef-client</code> agent to access the Chef API. </p> </li> </ul> <p class=\"title\"> <b>Attributes accepted in a AssociateNode request for Puppet</b> </p> <ul> <li> <p> <code>PUPPET_NODE_CSR</code>: A PEM-formatted certificate-signing request (CSR) that is created by the node. </p> </li> </ul>",
+                    "items": {
+                        "description": "A name and value pair that is specific to the engine of the server. ",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the engine attribute. ",
+                                "type": "string"
+                            },
+                            "Value": {
+                                "description": "The value of the engine attribute. ",
+                                "format": "password",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "NodeName": {
+                    "description": "The name of the node. ",
+                    "pattern": "^[\\-\\p{Alnum}_:.]+$",
+                    "type": "string"
+                },
+                "ServerName": {
+                    "description": "The name of the server with which to associate the node. ",
+                    "maxLength": 40,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z][a-zA-Z0-9\\-]*",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ServerName",
+                "NodeName",
+                "EngineAttributes"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
